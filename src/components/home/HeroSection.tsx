@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="bg-gradient-to-b from-background to-muted py-16 sm:py-24">
-      <Container className="flex flex-col items-center text-center space-y-6 animate-[fadeIn_150ms_ease-in]">
+    <section className="bg-primary py-20 sm:py-32">
+      <Container className="flex flex-col items-center text-center space-y-6">
         <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl max-w-2xl">
           Trusted Used Cars in Hyderabad
         </h1>
