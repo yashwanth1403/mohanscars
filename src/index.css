@@ -103,3 +103,9 @@
 .menu-slide-in  { animation: slide-in-right 0.2s ease-out forwards; }
 .menu-slide-out { animation: slide-out-right 0.2s ease-in forwards; }
 
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
