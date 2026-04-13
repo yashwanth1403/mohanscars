@@ -39,7 +39,7 @@ const CarDetail = () => {
     return c.id === slug || generatedSlug === slug || simpleSlug === slug;
   });
 
-  // Merge found car with placeholder defaults for missing fields
+  // Merge found car with  defaults for missing fields
   const activeCar = carFromData
     ? {
         ...placeholderCar,
