@@ -1,25 +1,26 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { BUSINESS_NAME } from "../config/business";
 import Container from "./Container";
 
 const NAV_LINKS = [
-  { label: "Cars",         to: "/cars" },
-  { label: "Sell Car",     to: "/sell-car" },
-  { label: "About",        to: "/about" },
+  { label: "Cars", to: "/cars" },
+  { label: "Sell Car", to: "/sell-car" },
+  { label: "About", to: "/about" },
   { label: "Testimonials", to: "/testimonials" },
-  { label: "Contact",      to: "/contact" },
+  { label: "Contact", to: "/contact" },
 ];
 
-const PHONE = "+919000000000"; // TODO Phase 2: replace
+const PHONE = "+919848666600"; // Mohan's Motors contact
 
 /**
  * Navbar – transparent at top, solid primary on scroll.
  * Mobile: logo left + hamburger right → slide-in drawer from right.
  */
 const Navbar = () => {
-  const [scrolled, setScrolled]     = useState(false);
-  const [menuOpen, setMenuOpen]     = useState(false);
-  const [closing, setClosing]       = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
 
   // Scroll detection
   useEffect(() => {
@@ -31,19 +32,33 @@ const Navbar = () => {
   // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
-  const openMenu  = () => { setClosing(false); setMenuOpen(true); };
+  const openMenu = () => {
+    setClosing(false);
+    setMenuOpen(true);
+  };
   const closeMenu = () => {
     setClosing(true);
-    setTimeout(() => { setMenuOpen(false); setClosing(false); }, 200);
+    setTimeout(() => {
+      setMenuOpen(false);
+      setClosing(false);
+    }, 200);
   };
 
-  const activeClass = ({ isActive }: { isActive: boolean }) =>
-    isActive
-      ? "text-secondary font-semibold border-b-2 border-secondary pb-0.5"
-      : "opacity-80 hover:opacity-100 transition-opacity";
+  const desktopActiveClass = ({ isActive }: { isActive: boolean }) => {
+    if (scrolled) {
+      return isActive
+        ? "text-secondary font-semibold border-b-2 border-secondary pb-0.5"
+        : "text-primary-foreground opacity-80 hover:opacity-100 transition-opacity";
+    }
+    return isActive
+      ? "text-primary font-semibold border-b-2 border-primary pb-0.5"
+      : "text-foreground font-medium opacity-80 hover:opacity-100 transition-opacity";
+  };
 
   const mobileActiveClass = ({ isActive }: { isActive: boolean }) =>
     isActive
@@ -56,9 +71,7 @@ const Navbar = () => {
       <header
         className={[
           "fixed inset-x-0 top-0 z-40 transition-all duration-200",
-          scrolled
-            ? "bg-primary shadow-md"
-            : "bg-transparent",
+          scrolled ? "bg-primary shadow-md" : "bg-transparent",
         ].join(" ")}
       >
         <Container>
@@ -66,15 +79,14 @@ const Navbar = () => {
             {/* Logo */}
             <Link
               to="/"
-              className="flex flex-col leading-none"
+              className="flex items-center gap-2"
               onClick={closeMenu}
             >
-              <span className="text-lg font-extrabold tracking-tight text-primary-foreground drop-shadow">
-                Siri Auto Cars
-              </span>
-              <span className="text-[10px] font-medium uppercase tracking-widest text-secondary">
-                Hyderabad, Telangana
-              </span>
+              <img 
+                src="/logo.png" 
+                alt={BUSINESS_NAME} 
+                className="h-10 sm:h-12 w-auto object-contain bg-white rounded p-1 shadow-sm transition-transform hover:scale-105" 
+              />
             </Link>
 
             {/* Desktop nav */}
@@ -83,8 +95,7 @@ const Navbar = () => {
                 <NavLink
                   key={link.to}
                   to={link.to}
-                  className={activeClass}
-                  style={{ color: "hsl(var(--primary-foreground))" }}
+                  className={desktopActiveClass}
                 >
                   {link.label}
                 </NavLink>
@@ -108,19 +119,22 @@ const Navbar = () => {
             >
               <span
                 className={[
-                  "block h-0.5 w-6 rounded-full bg-primary-foreground transition-all duration-200",
+                  "block h-0.5 w-6 rounded-full transition-all duration-200",
+                  scrolled ? "bg-primary-foreground" : "bg-primary",
                   menuOpen ? "translate-y-[7px] rotate-45" : "",
                 ].join(" ")}
               />
               <span
                 className={[
-                  "block h-0.5 w-6 rounded-full bg-primary-foreground transition-all duration-200",
+                  "block h-0.5 w-6 rounded-full transition-all duration-200",
+                  scrolled ? "bg-primary-foreground" : "bg-primary",
                   menuOpen ? "opacity-0" : "",
                 ].join(" ")}
               />
               <span
                 className={[
-                  "block h-0.5 w-6 rounded-full bg-primary-foreground transition-all duration-200",
+                  "block h-0.5 w-6 rounded-full transition-all duration-200",
+                  scrolled ? "bg-primary-foreground" : "bg-primary",
                   menuOpen ? "-translate-y-[7px] -rotate-45" : "",
                 ].join(" ")}
               />

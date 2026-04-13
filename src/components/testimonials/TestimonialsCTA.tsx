@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import { BUSINESS_NAME } from "@/config/business";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 
-const WHATSAPP_NUMBER = "919000000000";
+const WHATSAPP_NUMBER = "919848666600";
 const WHATSAPP_MSG = encodeURIComponent("Hello! I saw your customer reviews and I'm interested in buying a car.");
 
 const TestimonialsCTA = () => (
@@ -13,14 +14,15 @@ const TestimonialsCTA = () => (
           Ready to buy your next car?
         </h2>
         <p className="text-primary-foreground/75 text-base">
-          Join 100+ happy customers who found their car through Siri Auto Cars.
+          Join 100+ happy customers who found their car through {BUSINESS_NAME}.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
           <Button asChild size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold px-8">
             <Link to="/cars">View Available Cars</Link>
           </Button>
-          <Button asChild size="lg" className="bg-[hsl(142,70%,40%)] text-white hover:bg-[hsl(142,70%,34%)] font-bold px-8">
-            <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`} target="_blank" rel="noopener noreferrer">
+          <Button asChild size="lg" className="bg-[#25D366] text-white hover:bg-[#20bd5a] font-bold px-8 gap-2">
+            <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+              <img src="/whatsapp-color-svgrepo-com.svg" alt="" className="h-5 w-5 invert brightness-0" aria-hidden />
               WhatsApp Dealer
             </a>
           </Button>

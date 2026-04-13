@@ -1,4 +1,10 @@
-import { MessageCircle, Eye, Fuel, Settings, Calendar, Gauge } from "lucide-react";
+import {
+  Eye,
+  Fuel,
+  Settings,
+  Calendar,
+  Gauge,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { Car, formatPrice, formatKm } from "@/data/cars";
 
@@ -10,24 +16,34 @@ interface CarCardProps {
 
 const CarCard = ({ car }: CarCardProps) => {
   const waMessage = encodeURIComponent(
-    `Hi, I'm interested in ${car.name} (${car.year}) priced at ${formatPrice(car.price)}. Is it still available?`
+    `Hi, I'm interested in ${car.name} (${car.year}) priced at ${formatPrice(car.price)}. Is it still available?`,
   );
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`;
 
   return (
     <div className="bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col">
-      {/* Image */}
-      <div className="relative bg-muted h-44 sm:h-48 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-2 text-muted-foreground">
-          <div className="w-16 h-16 rounded-full bg-border flex items-center justify-center">
-            <svg viewBox="0 0 64 32" className="w-10 h-6 fill-muted-foreground opacity-50">
-              <path d="M8 24 L12 12 L52 12 L56 24 Z" />
-              <circle cx="18" cy="24" r="5" />
-              <circle cx="46" cy="24" r="5" />
-            </svg>
+      <div className="relative bg-muted h-44 sm:h-48 flex items-center justify-center overflow-hidden">
+        {car.image ? (
+          <img
+            src={car.image}
+            alt={car.name}
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          />
+        ) : (
+          <div className="flex flex-col items-center gap-2 text-muted-foreground">
+            <div className="w-16 h-16 rounded-full bg-border flex items-center justify-center">
+              <svg
+                viewBox="0 0 64 32"
+                className="w-10 h-6 fill-muted-foreground opacity-50"
+              >
+                <path d="M8 24 L12 12 L52 12 L56 24 Z" />
+                <circle cx="18" cy="24" r="5" />
+                <circle cx="46" cy="24" r="5" />
+              </svg>
+            </div>
+            <span className="text-xs font-medium">{car.brand}</span>
           </div>
-          <span className="text-xs font-medium">{car.brand}</span>
-        </div>
+        )}
 
         {/* EMI badge */}
         <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-semibold px-2 py-1 rounded-full">
@@ -39,7 +55,9 @@ const CarCard = ({ car }: CarCardProps) => {
       <div className="p-4 flex flex-col gap-3 flex-1">
         {/* Name + Year */}
         <div>
-          <h3 className="font-bold text-foreground text-base leading-tight">{car.name}</h3>
+          <h3 className="font-bold text-foreground text-base leading-tight">
+            {car.name}
+          </h3>
           <p className="text-muted-foreground text-sm mt-0.5">{car.year}</p>
         </div>
 
@@ -66,15 +84,15 @@ const CarCard = ({ car }: CarCardProps) => {
             className="flex-1 flex items-center justify-center gap-1.5 bg-primary text-primary-foreground rounded-lg h-11 text-sm font-semibold hover:bg-primary-dark transition-colors"
           >
             <Eye size={15} />
-            View Details
+            {car.brand ? `View ${car.brand}` : 'View Details'}
           </Link>
           <a
             href={waLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-1.5 bg-secondary text-secondary-foreground rounded-lg h-11 text-sm font-semibold hover:bg-secondary-dark transition-colors"
+            className="flex-1 flex items-center justify-center gap-1.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-lg h-11 text-sm font-semibold transition-colors"
           >
-            <MessageCircle size={15} />
+            <img src="/whatsapp-color-svgrepo-com.svg" alt="" className="h-4 w-4 invert brightness-0" aria-hidden />
             WhatsApp
           </a>
         </div>
@@ -83,7 +101,13 @@ const CarCard = ({ car }: CarCardProps) => {
   );
 };
 
-const SpecItem = ({ icon, label }: { icon: React.ReactNode; label: string }) => (
+const SpecItem = ({
+  icon,
+  label,
+}: {
+  icon: React.ReactNode;
+  label: string;
+}) => (
   <div className="flex items-center gap-1.5 text-muted-foreground">
     <span className="shrink-0">{icon}</span>
     <span className="text-xs font-medium truncate">{label}</span>

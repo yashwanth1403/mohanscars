@@ -1,4 +1,4 @@
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone } from "lucide-react";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 
@@ -41,8 +41,9 @@ const SellCarCTA = () => {
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
             >
-              <Button className="w-full bg-[hsl(142,70%,40%)] hover:bg-[hsl(142,70%,34%)] text-white font-semibold h-12 px-6 rounded-xl text-sm gap-2">
-                <MessageCircle className="w-4 h-4" /> WhatsApp
+              <Button className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold h-12 px-6 rounded-xl text-sm gap-2">
+                <img src="/whatsapp-color-svgrepo-com.svg" alt="" className="h-5 w-5 invert brightness-0" aria-hidden />
+                WhatsApp
               </Button>
             </a>
           </div>

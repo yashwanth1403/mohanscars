@@ -1,3 +1,4 @@
+import { BUSINESS_NAME } from "@/config/business";
 import Container from "@/components/Container";
 import { Card, CardContent } from "@/components/ui/card";
 import { ShieldCheck, BadgeIndianRupee, Car, Handshake } from "lucide-react";
@@ -14,7 +15,7 @@ const WhyChooseUsSection = () => {
     <section className="py-12 sm:py-16 bg-muted">
       <Container className="space-y-8">
         <div className="text-center space-y-2">
-          <h2 className="text-2xl font-bold sm:text-3xl">Why Choose Siri Auto Cars?</h2>
+          <h2 className="text-2xl font-bold sm:text-3xl">Why Choose {BUSINESS_NAME}?</h2>
           <p className="text-muted-foreground">Trusted by 500+ happy customers across Hyderabad</p>
         </div>
 

@@ -1,3 +1,4 @@
+import { BUSINESS_NAME } from "@/config/business";
 import Container from "@/components/Container";
 
 const TestimonialsHero = () => (
@@ -11,7 +12,7 @@ const TestimonialsHero = () => (
           What Our Customers Say
         </h1>
         <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
-          Real feedback from customers who bought or sold their cars through Siri Auto Cars in Hyderabad.
+          Real feedback from customers who bought or sold their cars through {BUSINESS_NAME} in Hyderabad.
         </p>
       </div>
     </Container>

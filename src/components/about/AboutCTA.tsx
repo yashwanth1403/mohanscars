@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
+import { BUSINESS_NAME } from "@/config/business";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 
-const WHATSAPP_NUMBER = "919000000000";
-const WHATSAPP_MSG = encodeURIComponent("Hello! I'm interested in buying a car from Siri Auto Cars.");
+const WHATSAPP_NUMBER = "919848666600";
 
 const AboutCTA = () => (
   <section className="py-14 sm:py-20 bg-primary">
@@ -22,8 +22,9 @@ const AboutCTA = () => (
           <Button asChild variant="outline" size="lg" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary px-8">
             <Link to="/contact">Contact Us</Link>
           </Button>
-          <Button asChild size="lg" className="bg-[hsl(142,70%,40%)] text-white hover:bg-[hsl(142,70%,34%)] font-bold px-8">
-            <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`} target="_blank" rel="noopener noreferrer">
+          <Button asChild size="lg" className="bg-[#25D366] text-white hover:bg-[#20bd5a] font-bold px-8 gap-2">
+            <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hello! I'm interested in buying a car from ${BUSINESS_NAME}.`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+              <img src="/whatsapp-color-svgrepo-com.svg" alt="" className="h-5 w-5 invert brightness-0" aria-hidden />
               WhatsApp
             </a>
           </Button>

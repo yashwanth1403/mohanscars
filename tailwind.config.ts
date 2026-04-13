@@ -30,6 +30,7 @@ export default {
           foreground: "hsl(var(--secondary-foreground))",
           dark: "hsl(var(--brand-secondary-dark))",
         },
+        gold: "hsl(var(--brand-gold))",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",

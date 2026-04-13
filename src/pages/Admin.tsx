@@ -1,39 +1,132 @@
+import { useState } from "react";
 import Container from "@/components/Container";
-import { Placeholder } from "@/components/Placeholder";
+import AdminHeader from "@/components/admin/AdminHeader";
+import InventoryTable from "@/components/admin/InventoryTable";
+import AddCarModal, { type AdminCarFormData } from "@/components/admin/AddCarModal";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
+  type AdminCar,
+  INITIAL_ADMIN_CARS,
+} from "@/data/admin-cars";
 
 /**
- * /admin — Admin Dashboard
- * Objective: Protected internal dashboard for managing inventory, leads, and content.
- * NOTE: No auth guard in Phase 1. Auth + role-based access added in Phase 3.
+ * /admin — Car Inventory Dashboard
+ * Allows dealer to add, edit, delete, and mark cars as sold.
+ * No authentication in Phase 1.
  */
 const Admin = () => {
+  const [cars, setCars] = useState<AdminCar[]>(() => [...INITIAL_ADMIN_CARS]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [editingCar, setEditingCar] = useState<AdminCar | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<AdminCar | null>(null);
+
+  const handleAddCar = () => {
+    setEditingCar(null);
+    setModalOpen(true);
+  };
+
+  const handleEdit = (car: AdminCar) => {
+    setEditingCar(car);
+    setModalOpen(true);
+  };
+
+  const handleModalSubmit = (data: AdminCarFormData, id?: string) => {
+    if (id) {
+      setCars((prev) =>
+        prev.map((c) =>
+          c.id === id
+            ? {
+                ...c,
+                ...data,
+                emi: data.emi,
+                status: c.status,
+              }
+            : c
+        )
+      );
+    } else {
+      const newCar: AdminCar = {
+        ...data,
+        id: String(Date.now()),
+        emi: data.emi,
+        status: "Available",
+        image: data.image || "",
+      };
+      setCars((prev) => [...prev, newCar]);
+    }
+    setModalOpen(false);
+    setEditingCar(null);
+  };
+
+  const handleDelete = (car: AdminCar) => {
+    setDeleteTarget(car);
+  };
+
+  const confirmDelete = () => {
+    if (deleteTarget) {
+      setCars((prev) => prev.filter((c) => c.id !== deleteTarget.id));
+      setDeleteTarget(null);
+    }
+  };
+
+  const handleMarkSold = (car: AdminCar) => {
+    setCars((prev) =>
+      prev.map((c) =>
+        c.id === car.id ? { ...c, status: "Sold" as const } : c
+      )
+    );
+  };
+
   return (
     <div className="min-h-screen bg-muted">
-      <header className="bg-primary px-4 py-4 shadow-md">
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between">
-          <span className="text-lg font-bold text-primary-foreground">
-            Siri Auto Cars — Admin
-          </span>
-          <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-            Phase 1 — No Auth Yet
-          </span>
-        </div>
-      </header>
+      <Container className="py-8 space-y-6">
+        <AdminHeader onAddCar={handleAddCar} />
 
-      <Container className="py-10 space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-          Admin Dashboard
-        </h1>
-        <p className="text-sm text-muted-foreground italic">
-          [Developer note] Internal dashboard. Phase 3 will add: JWT/Supabase auth guard, role-based access (admin / staff), full CRUD for inventory, lead management, content editor, and analytics.
-        </p>
-
-        <Placeholder label="📊 Stats Overview — Total cars, leads today, pending inquiries, cars sold this month" />
-        <Placeholder label="🚗 Inventory Manager — Add / Edit / Delete car listings with photo upload" />
-        <Placeholder label="📥 Leads Inbox — View and manage buyer/seller leads with status tracking" />
-        <Placeholder label="💬 Testimonials Manager — Approve, edit, or delete customer reviews" />
-        <Placeholder label="⚙️ Settings — Business info, contact details, WhatsApp number, working hours" />
+        <InventoryTable
+          cars={cars}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onMarkSold={handleMarkSold}
+        />
       </Container>
+
+      <AddCarModal
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+        initialCar={editingCar}
+        onSubmit={handleModalSubmit}
+      />
+
+      <AlertDialog open={!!deleteTarget} onOpenChange={() => setDeleteTarget(null)}>
+        <AlertDialogContent className="rounded-xl">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete car listing?</AlertDialogTitle>
+            <AlertDialogDescription>
+              {deleteTarget
+                ? `This will permanently remove "${deleteTarget.name}" from inventory. This action cannot be undone.`
+                : ""}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={confirmDelete}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

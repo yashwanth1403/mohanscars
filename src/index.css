@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Siri Auto Cars – Design System
+/* Mohan's Motors – Design System
    All colors MUST be HSL.
-   Primary:   Deep Blue  hsl(220, 85%, 20%)
-   Secondary: Orange     hsl(25, 95%, 53%)
+   Primary:   Navy Blue  hsl(223, 58%, 18%)
+   Secondary: Burgundy   hsl(346, 64%, 28%)
    Neutral bg: Light gray hsl(210, 20%, 97%)
    Text:       Dark gray  hsl(215, 25%, 15%)
    Spacing: 8px scale | Max width: 1200px | Mobile padding: 16px
@@ -14,11 +14,12 @@
 @layer base {
   :root {
     /* Brand */
-    --brand-primary:          220 85% 20%;
-    --brand-primary-light:    220 70% 30%;
-    --brand-primary-dark:     220 90% 12%;
-    --brand-secondary:        25 95% 53%;
-    --brand-secondary-dark:   25 90% 43%;
+    --brand-gold:             43 74% 49%;
+    --brand-primary:          223 58% 18%;
+    --brand-primary-light:    223 50% 28%;
+    --brand-primary-dark:     223 65% 12%;
+    --brand-secondary:        346 64% 28%;
+    --brand-secondary-dark:   346 70% 20%;
 
     /* Surfaces */
     --background:             210 20% 97%;
@@ -29,13 +30,13 @@
     --popover-foreground:     215 25% 15%;
 
     /* Components */
-    --primary:                220 85% 20%;
+    --primary:                223 58% 18%;
     --primary-foreground:     0 0% 100%;
-    --secondary:              25 95% 53%;
+    --secondary:              346 64% 28%;
     --secondary-foreground:   0 0% 100%;
     --muted:                  210 15% 93%;
     --muted-foreground:       215 15% 45%;
-    --accent:                 25 95% 53%;
+    --accent:                 346 64% 28%;
     --accent-foreground:      0 0% 100%;
     --destructive:            0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -43,13 +44,13 @@
     /* Borders / Inputs */
     --border:                 214 20% 88%;
     --input:                  214 20% 88%;
-    --ring:                   220 85% 20%;
+    --ring:                   223 58% 18%;
 
     --radius:                 0.5rem;
 
     /* Navbar */
     --navbar-transparent:     0 0% 0% / 0;
-    --navbar-solid:           220 85% 20%;
+    --navbar-solid:           223 58% 18%;
 
     /* Sidebar (keep for shadcn compatibility) */
     --sidebar-background:     0 0% 98%;
@@ -80,9 +81,9 @@
 
 /* WhatsApp pulse animation */
 @keyframes whatsapp-pulse {
-  0%   { box-shadow: 0 0 0 0 hsl(142 70% 45% / 0.7); }
-  70%  { box-shadow: 0 0 0 12px hsl(142 70% 45% / 0); }
-  100% { box-shadow: 0 0 0 0 hsl(142 70% 45% / 0); }
+  0%   { box-shadow: 0 0 0 0 rgb(37 211 102 / 0.7); }
+  70%  { box-shadow: 0 0 0 12px rgb(37 211 102 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(37 211 102 / 0); }
 }
 
 .whatsapp-pulse {

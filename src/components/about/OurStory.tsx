@@ -1,3 +1,4 @@
+import { BUSINESS_NAME } from "@/config/business";
 import Container from "@/components/Container";
 
 const OurStory = () => (
@@ -13,7 +14,7 @@ const OurStory = () => (
             Born to make car buying simple in Hyderabad
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            Siri Auto Cars was started with one goal: to make buying a reliable used car in Hyderabad easy, transparent, and stress-free. We saw too many buyers getting stuck with overpriced or poorly-maintained cars sold through complicated middlemen chains.
+            {BUSINESS_NAME} was started with one goal: to make buying a reliable used car in Hyderabad easy, transparent, and stress-free. We saw too many buyers getting stuck with overpriced or poorly-maintained cars sold through complicated middlemen chains.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             We believe every budget buyer deserves a quality vehicle. That's why every car we sell goes through a thorough inspection and is priced fairly — no hidden costs, no pressure tactics.

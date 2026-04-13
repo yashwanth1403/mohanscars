@@ -1,11 +1,12 @@
+import { BUSINESS_NAME } from "@/config/business";
 import Container from "@/components/Container";
 import TestimonialCard from "./TestimonialCard";
 
-const TESTIMONIALS = [
+const getTestimonials = () => [
   {
     name: "Rajesh Kumar",
     location: "Kukatpally, Hyderabad",
-    review: "Siri Auto Cars helped me find a great Maruti Swift within my budget. The process was smooth, transparent, and the car was in excellent condition. Highly recommended!",
+    review: `${BUSINESS_NAME} helped me find a great Maruti Swift within my budget. The process was smooth, transparent, and the car was in excellent condition. Highly recommended!`,
     car: "Maruti Swift VXI 2020",
     rating: 5,
   },
@@ -46,7 +47,9 @@ const TESTIMONIALS = [
   },
 ];
 
-const TestimonialsGrid = () => (
+const TestimonialsGrid = () => {
+  const testimonials = getTestimonials();
+  return (
   <section className="py-14 sm:py-20 bg-background">
     <Container className="space-y-10">
       <div className="text-center space-y-2">
@@ -55,12 +58,13 @@ const TestimonialsGrid = () => (
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {TESTIMONIALS.map((t) => (
+        {testimonials.map((t) => (
           <TestimonialCard key={t.name} {...t} />
         ))}
       </div>
     </Container>
   </section>
-);
+  );
+};
 
 export default TestimonialsGrid;

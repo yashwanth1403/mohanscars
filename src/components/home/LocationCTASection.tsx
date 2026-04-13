@@ -1,10 +1,10 @@
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
-import { Phone, MapPin, MessageCircle } from "lucide-react";
+import { Phone, MapPin } from "lucide-react";
 
-const PHONE = "+919000000000";
-const WHATSAPP = "919000000000";
-const MAPS_URL = "https://maps.google.com/?q=Siri+Auto+Cars+Hyderabad";
+const PHONE = "+919848666600";
+const WHATSAPP = "919848666600";
+const MAPS_URL = "https://www.google.com/maps/place/Mohans+Motors/@17.441004,78.4520748,17z";
 
 const LocationCTASection = () => {
   return (
@@ -25,9 +25,10 @@ const LocationCTASection = () => {
               <MapPin className="h-4 w-4" /> Get Directions
             </a>
           </Button>
-          <Button asChild size="lg" className="w-full sm:w-auto gap-2 bg-[hsl(142,70%,40%)] hover:bg-[hsl(142,70%,35%)] text-white">
-            <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hi, I'd like to visit your showroom.")}`} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="h-4 w-4" /> WhatsApp
+          <Button asChild size="lg" className="w-full sm:w-auto gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white">
+            <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hi, I'd like to visit your showroom.")}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+              <img src="/whatsapp-color-svgrepo-com.svg" alt="" className="h-5 w-5 invert brightness-0" aria-hidden />
+              WhatsApp
             </a>
           </Button>
         </div>

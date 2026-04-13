@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import { BUSINESS_NAME } from "@/config/business";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
 
-const TESTIMONIALS = [
-  { name: "Rajesh Kumar", review: "Bought a Swift from Siri Auto Cars. Best price in Hyderabad and the car was in mint condition. Highly recommended!" },
+const getTestimonials = () => [
+  { name: "Rajesh Kumar", review: `Bought a Swift from ${BUSINESS_NAME}. Best price in Hyderabad and the car was in mint condition. Highly recommended!` },
   { name: "Priya Sharma", review: "The team helped me get a loan approved in just 2 days. Very professional and transparent throughout the process." },
   { name: "Mohammed Irfan", review: "Sold my old Creta through them. Got a fair price and the payment was instant. No hassle at all." },
 ];
@@ -19,6 +20,7 @@ const Stars = () => (
 );
 
 const TestimonialsPreviewSection = () => {
+  const testimonials = getTestimonials();
   return (
     <section className="py-12 sm:py-16 bg-muted">
       <Container className="space-y-8">
@@ -28,7 +30,7 @@ const TestimonialsPreviewSection = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((t) => (
+          {testimonials.map((t) => (
             <Card key={t.name} className="border-none shadow-sm">
               <CardContent className="p-6 space-y-3">
                 <Stars />

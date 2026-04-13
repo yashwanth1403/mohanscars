@@ -1,4 +1,5 @@
 import { BadgeIndianRupee, Zap, MessageCircle, FileCheck } from "lucide-react";
+import { BUSINESS_NAME } from "@/config/business";
 import Container from "@/components/Container";
 
 const benefits = [
@@ -28,7 +29,7 @@ const SellCarBenefits = () => (
   <section className="py-12 sm:py-16 bg-background">
     <Container>
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10">
-        Why Sell With Siri Auto Cars?
+        Why Sell With {BUSINESS_NAME}?
       </h2>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {benefits.map(({ icon: Icon, title, description }) => (

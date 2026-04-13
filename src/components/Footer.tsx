@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BUSINESS_NAME } from "../config/business";
 import Container from "./Container";
 
 const Footer = () => {
@@ -9,12 +10,16 @@ const Footer = () => {
       <Container className="py-10">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {/* Brand */}
-          <div>
-            <h2 className="text-lg font-bold tracking-tight">Siri Auto Cars</h2>
-            <p className="mt-2 text-sm opacity-75">
-              Hyderabad, Telangana
+          <div className="space-y-4">
+            <img 
+              src="/logo.png" 
+              alt={BUSINESS_NAME} 
+              className="h-12 lg:h-16 w-auto object-contain bg-white rounded p-2" 
+            />
+            <p className="text-sm opacity-75">
+              7-1-46, Dharam Karan Road, Ameerpet, Hyderabad - 500016
               <br />
-              Quality pre-owned cars you can trust.
+              A Multibrand Pre-owned Cars Outlet.
             </p>
           </div>
 
@@ -49,15 +54,15 @@ const Footer = () => {
               Contact
             </h3>
             <ul className="space-y-2 text-sm opacity-75">
-              <li>📞 +91 90000 00000</li>
-              <li>📧 info@siriauto.in</li>
-              <li>📍 Hyderabad, Telangana</li>
+              <li>📞 +91 98486 66600</li>
+              <li>📧 info@mohansmotors.com</li>
+              <li>📍 Ameerpet, Hyderabad - 500016</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-8 border-t border-primary-foreground/20 pt-6 text-center text-xs opacity-50">
-          © {year} Siri Auto Cars. All rights reserved.
+          © {year} {BUSINESS_NAME}. All rights reserved.
         </div>
       </Container>
     </footer>

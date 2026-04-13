@@ -1,13 +1,16 @@
 import { ClipboardList, PhoneCall, BadgeIndianRupee } from "lucide-react";
+import { BUSINESS_NAME } from "@/config/business";
 import Container from "@/components/Container";
 
-const steps = [
+const getSteps = () => [
   { icon: ClipboardList, step: "01", title: "Submit Car Details", description: "Fill in your car info and contact details. Takes less than 60 seconds." },
-  { icon: PhoneCall, step: "02", title: "Our Team Contacts You", description: "A Siri Auto Cars executive will call or WhatsApp you within 2 hours." },
+  { icon: PhoneCall, step: "02", title: "Our Team Contacts You", description: `A ${BUSINESS_NAME} executive will call or WhatsApp you within 2 hours.` },
   { icon: BadgeIndianRupee, step: "03", title: "Get Best Price Offer", description: "Receive a fair, transparent price offer with no hidden deductions." },
 ];
 
-const HowItWorks = () => (
+const HowItWorks = () => {
+  const steps = getSteps();
+  return (
   <section className="py-12 sm:py-16 bg-background">
     <Container>
       <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10">How It Works</h2>
@@ -31,6 +34,7 @@ const HowItWorks = () => (
       </div>
     </Container>
   </section>
-);
+  );
+};
 
 export default HowItWorks;

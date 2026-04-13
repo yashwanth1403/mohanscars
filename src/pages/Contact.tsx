@@ -1,6 +1,10 @@
 import SiteLayout from "@/components/SiteLayout";
 import Container from "@/components/Container";
-import { Placeholder } from "@/components/Placeholder";
+import { ContactHeader } from "@/components/contact/ContactHeader";
+import { ContactCards } from "@/components/contact/ContactCards";
+import { ContactForm } from "@/components/contact/ContactForm";
+import { ShowroomMap } from "@/components/contact/ShowroomMap";
+import { ContactCTA } from "@/components/contact/ContactCTA";
 
 /**
  * /contact — Contact Page
@@ -9,20 +13,29 @@ import { Placeholder } from "@/components/Placeholder";
 const Contact = () => {
   return (
     <SiteLayout>
-      <Container className="py-10 space-y-6">
-        <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-          Contact Us
-        </h1>
-        <p className="text-sm text-muted-foreground italic">
-          [Developer note] Contact page with form, direct phone/WhatsApp links, showroom address, Google Maps embed, and working hours.
-        </p>
+      {/* Soft background for the entire page */}
+      <div className="bg-muted/20 pb-20 pt-10 sm:pt-16 min-h-[calc(100vh-64px)]">
+        <Container>
+          {/* Header */}
+          <ContactHeader />
 
-        <Placeholder label="📞 Quick Contact Strip — Call / WhatsApp / Email buttons (large, tap-friendly)" />
-        <Placeholder label="📝 Contact Form — Name, Phone, Email, Message, Submit" />
-        <Placeholder label="🗺️ Google Maps Embed — Showroom location pinned on map" />
-        <Placeholder label="📍 Address & Hours — Physical address, weekday/weekend timings" />
-        <Placeholder label="🤝 Social Links — Facebook, Instagram, YouTube (if applicable)" />
-      </Container>
+          {/* Main content grid: Form & Map */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+            {/* Left: Contact Form */}
+            <div className="flex flex-col h-full w-full">
+              <ContactForm />
+            </div>
+
+            {/* Right: Showroom Details & Map */}
+            <div className="flex flex-col h-full w-full">
+              <ShowroomMap />
+            </div>
+          </div>
+
+          {/* Bottom Conversion Banner */}
+          <ContactCTA />
+        </Container>
+      </div>
     </SiteLayout>
   );
 };
